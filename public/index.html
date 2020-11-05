@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>bot server</title>
+    <style>
+      background-color:yellow;
+    </style>
+  </head>
+  <body>
+    <h1>bot server</h1>
+          <div>bots: <span id="bots"></span></div>
+    <script>
+      (function() {
+        const bots = document.getElementById('bots');
+        const url = "math.seattleacademy.org/1500"
+        console.log(url)
+
+        const ws = new WebSocket(`wss://${url}`);
+
+        ws.onmessage = function(event) {
+          const data = JSON.parse(event.data);
+          bots.textContent = data;
+        };
+      })();
+    </script>
+  </body>
+</html>
